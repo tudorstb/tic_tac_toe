@@ -27,15 +27,20 @@ def intro():
     game_tipe=input('|Select game tipe , 1vs1 (press 1) or 1vs machine (press 2):')
     return game_tipe
 
+def verifi_pozition(raw,collum):
+
+    if tic_tac_toe_list[raw-1][collum-1]=='O' or tic_tac_toe_list[raw-1][collum-1]=='X':
+        print("\n Pozition already occupied \n")
+        return 0
+    else:
+        return 1
+
 if intro()=='1':
     print("Player who cohoose 'o' starts")
     game_won=False
 
     current_player=0
     print(f'{r1}\n{r2}\n{r3}\n')
-
-def verifi_pozition(raw,collum):
-    if tic_tac_toe_list[raw][collum]=='O' or tic_tac_toe_list[raw][collum]=='X':
 
 
 
@@ -48,15 +53,26 @@ def verifi_pozition(raw,collum):
             raw=verify_int(raw)
             collum=input('Select collum:')
             collum=verify_int(collum)
-            game_state(raw,collum,current_player)
-            print(f'{r1}\n{r2}\n{r3}\n')
+            verifi = verifi_pozition(raw, collum)
+            print(f'verifi={verifi}')
+            if verifi == 1:
+                game_state(raw, collum, current_player)
+                print(f'{r1}\n{r2}\n{r3}\n')
+                current_player += 1
+
         else:
             print('"X" turn')
             raw = input('Select raw:')
             raw = verify_int(raw)
             collum = input('Select collum:')
             collum = verify_int(collum)
-            game_state(raw, collum, current_player)
-            print(f'{r1}\n{r2}\n{r3}\n')
-        current_player+=1
+            verifi = verifi_pozition(raw, collum)
+            if verifi==1:
+                game_state(raw, collum, current_player)
+                print(f'{r1}\n{r2}\n{r3}\n')
+                current_player += 1
+
+
+
+
 
