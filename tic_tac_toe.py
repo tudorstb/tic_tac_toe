@@ -150,47 +150,86 @@ elif players=='2':
         print(f'{r1}\n{r2}\n{r3}\n')
 
         entry_count = 0
-       # choose=input("Choose what you want to be")
+        choose = ""
+        while choose!="o" and choose!="O" and choose!="x" and choose!="X":
+            choose=input("Choose what you want to be(O/X)")
+        if choose=='o' or choose=='O':
+            while game_won == False and entry_count != 9:
+                raw = 0
+                collum = 0
+                if current_player % 2 == 0:
+                    print('"O" turn')
+                    raw = -1
+                    while raw == -1:
+                        raw = input('Select raw:')
+                        raw = verify_int(raw)
 
-        while game_won == False and entry_count != 9:
-            raw = 0
-            collum = 0
-            if current_player % 2 == 0:
-                print('"O" turn')
-                raw = -1
-                while raw == -1:
-                    raw = input('Select raw:')
-                    raw = verify_int(raw)
+                    collum = -1
+                    while collum == -1:
+                        collum = input('Select collum:')
+                        collum = verify_int(collum)
+                    verifi = verifi_pozition(raw, collum)
+                    if verifi == 1:
+                        game_state(raw, collum, current_player)
+                        print(f'{r1}\n{r2}\n{r3}\n')
+                        current_player += 1
+                        game_won = verifi_win(raw, collum, "O")
+                        entry_count += 1
 
-                collum = -1
-                while collum == -1:
-                    collum = input('Select collum:')
-                    collum = verify_int(collum)
-                verifi = verifi_pozition(raw, collum)
-                if verifi == 1:
-                    game_state(raw, collum, current_player)
-                    print(f'{r1}\n{r2}\n{r3}\n')
-                    current_player += 1
-                    game_won = verifi_win(raw, collum, "O")
-                    entry_count += 1
+                else:
+                    raw = -1
+                    while raw == -1:
+                        raw = random.randint(0,3)
+                        raw =verify_int_bot(raw)
+                    collum = -1
+                    while collum == -1:
+                        collum = random.randint(0,3)
+                        collum = verify_int_bot(collum)
+                    verifi = verifi_pozition_bot(raw, collum)
+                    if verifi == 1:
+                        game_state(raw, collum, current_player)
+                        print(f'{r1}\n{r2}\n{r3}\n')
+                        current_player += 1
+                        game_won = verifi_win(raw, collum, "X")
+                        entry_count += 1
+        if choose=='x' or choose=='X':
+            while game_won == False and entry_count != 9:
+                raw = 0
+                collum = 0
+                if current_player % 2 == 0:
+                    raw = -1
+                    while raw == -1:
+                        raw = random.randint(0, 3)
+                        raw = verify_int_bot(raw)
+                    collum = -1
+                    while collum == -1:
+                        collum = random.randint(0, 3)
+                        collum = verify_int_bot(collum)
+                    verifi = verifi_pozition_bot(raw, collum)
+                    if verifi == 1:
+                        game_state(raw, collum, current_player)
+                        print(f'{r1}\n{r2}\n{r3}\n')
+                        current_player += 1
+                        game_won = verifi_win(raw, collum, "O")
+                        entry_count += 1
+                else:
+                    print('"X" turn')
+                    raw = -1
+                    while raw == -1:
+                        raw = input('Select raw:')
+                        raw = verify_int(raw)
 
-            else:
-                raw = -1
-                while raw == -1:
-                    raw = random.randint(0,3)
-                    raw =verify_int_bot(raw)
-                collum = -1
-                while collum == -1:
-                    collum = random.randint(0,3)
-                    collum = verify_int_bot(collum)
-                verifi = verifi_pozition_bot(raw, collum)
-                if verifi == 1:
-                    game_state(raw, collum, current_player)
-                    print(f'{r1}\n{r2}\n{r3}\n')
-                    current_player += 1
-                    game_won = verifi_win(raw, collum, "X")
-                    entry_count += 1
-
+                    collum = -1
+                    while collum == -1:
+                        collum = input('Select collum:')
+                        collum = verify_int(collum)
+                    verifi = verifi_pozition(raw, collum)
+                    if verifi == 1:
+                        game_state(raw, collum, current_player)
+                        print(f'{r1}\n{r2}\n{r3}\n')
+                        current_player += 1
+                        game_won = verifi_win(raw, collum, "X")
+                        entry_count += 1
         if entry_count == 9:
             print('Tie,you ran out of moves ')
         replay = input("If you wish to replay press (R):")
