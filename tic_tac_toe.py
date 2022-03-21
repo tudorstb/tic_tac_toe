@@ -34,6 +34,11 @@ if intro()=='1':
     current_player=0
     print(f'{r1}\n{r2}\n{r3}\n')
 
+def verifi_pozition(raw,collum):
+    if tic_tac_toe_list[raw][collum]=='O' or tic_tac_toe_list[raw][collum]=='X':
+
+
+
     while game_won==False:
         raw=0
         collum=0
@@ -41,7 +46,6 @@ if intro()=='1':
             print('"O" turn')
             raw=input('Select raw:')
             raw=verify_int(raw)
-            print(type(raw))
             collum=input('Select collum:')
             collum=verify_int(collum)
             game_state(raw,collum,current_player)
@@ -49,9 +53,10 @@ if intro()=='1':
         else:
             print('"X" turn')
             raw = input('Select raw:')
-            raw=verify_int(raw)
+            raw = verify_int(raw)
             collum = input('Select collum:')
-            collum=verify_int(collum)
+            collum = verify_int(collum)
+            game_state(raw, collum, current_player)
             print(f'{r1}\n{r2}\n{r3}\n')
         current_player+=1
 
