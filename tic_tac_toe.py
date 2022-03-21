@@ -1,7 +1,4 @@
 import random
-
-
-
 def game_state(row,collum,current_player):
     row-=1
     collum-=1
@@ -9,7 +6,6 @@ def game_state(row,collum,current_player):
         tic_tac_toe_list[row][collum]='O'
     else:
         tic_tac_toe_list[row][collum]='X'
-
 def verify_int(n):
     try:
         n=int(n)
@@ -19,7 +15,6 @@ def verify_int(n):
         return -1
     else:
         return n
-
 def verify_int_bot(n):
     try:
         n=int(n)
@@ -28,8 +23,6 @@ def verify_int_bot(n):
         return -1
     else:
         return n
-
-
 def intro():
     print('|Welcome to tic tac toe|')
     print('------------------------')
@@ -39,13 +32,11 @@ def intro():
 def verify_pozition(row,collum):
     if tic_tac_toe_list[row-1][collum-1]=='O' or tic_tac_toe_list[row-1][collum-1]=='X':
         print("\n Pozition already occupied \n")
-
         return 0
     else:
         return 1
 def verify_pozition_bot(row,collum):
     if tic_tac_toe_list[row-1][collum-1]=='O' or tic_tac_toe_list[row-1][collum-1]=='X':
-
         return 0
     else:
         return 1
@@ -68,13 +59,7 @@ def verify_win(row, collum,o_x):
     #second diagonal
     if tic_tac_toe_list[0][2]==tic_tac_toe_list[1][1]==tic_tac_toe_list[2][0]==o_x:
         return True,print(f'"{o_x}" won')
-
-
-
-
     return False
-
-
 replay='R'
 players=intro()
 if players=='1':
@@ -82,14 +67,11 @@ if players=='1':
         r1 = ['-', '-', '-']
         r2 = ['-', '-', '-']
         r3 = ['-', '-', '-']
-
         tic_tac_toe_list = [r1, r2, r3]
         print("Player who cohoose 'o' starts")
         game_won=False
-
         current_player=0
         print(f'{r1}\n{r2}\n{r3}\n')
-
         entry_count = 0
         while game_won==False and entry_count!=9:
             row=0
@@ -100,7 +82,6 @@ if players=='1':
                 while row==-1:
                     row=input('Select row:')
                     row=verify_int(row)
-
                 collum = -1
                 while collum == -1:
                     collum = input('Select collum:')
@@ -112,8 +93,6 @@ if players=='1':
                     current_player += 1
                     game_won=verify_win(row, collum,"O")
                     entry_count += 1
-
-
             else:
                 print('"X" turn')
                 row = -1
