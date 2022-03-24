@@ -211,4 +211,5 @@ elif players=='2':
                         entry_count += 1
         if entry_count == 9:
             print('Tie,you ran out of moves ')
+            
         replay = input("If you wish to replay press (R):")
